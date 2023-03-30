@@ -68,4 +68,15 @@ calculate_fasta_stats <- function(file_path) {
 
 result <- calculate_fasta_stats(fastafile_path)
 
-write.table(result, outputfile_path, sep = "\t", quote = FALSE)
+fileConn<-file(outputfile_path)
+writeLines(c(paste("Total number of sequences:", result[[1]], sep = "\t"),
+             paste("Average length:", result[[2]], sep = "\t"),
+             paste("Shortest sequence length:", result[[3]], sep = "\t"),
+             paste("Longest sequence length:", result[[4]], sep = "\t"),
+             paste("N50:", result[[5]], sep = "\t"),
+             paste("Mean GC content:", result[[6]], sep = "\t"),
+             paste("Number of Ns:", result[[7]], sep = "\t")), 
+           fileConn)
+close(fileConn)
+
+##write.table(result, outputfile_path, sep = "\t", quote = FALSE)

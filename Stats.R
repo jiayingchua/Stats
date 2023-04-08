@@ -12,7 +12,7 @@ args = commandArgs(trailingOnly = TRUE)
 fastafile_path <- args[1]
 # example: "C:\\Users\\JiaYing\\GP\\Rubus_Idaeus.genome.fa.gz"
 outputfile_path <- args[2]
-#example: "C:\\Users\\JiaYing\\GP\\Rubus_Idaeus_result.txt"
+# example: "C:\\Users\\JiaYing\\GP\\Rubus_Idaeus_result.txt"
 
 calculate_fasta_stats <- function(file_path) {
   # Read in the fasta file
@@ -69,13 +69,13 @@ calculate_fasta_stats <- function(file_path) {
 result <- calculate_fasta_stats(fastafile_path)
 
 fileConn<-file(outputfile_path)
-writeLines(c(paste("Total number of sequences:", result[[1]], sep = "\t"),
-             paste("Average length:", result[[2]], sep = "\t"),
-             paste("Shortest sequence length:", result[[3]], sep = "\t"),
-             paste("Longest sequence length:", result[[4]], sep = "\t"),
-             paste("N50:", result[[5]], sep = "\t"),
-             paste("Mean GC content:", result[[6]], sep = "\t"),
-             paste("Number of Ns:", result[[7]], sep = "\t")), 
+writeLines(c(paste("Total number of sequences:", format(ceiling(result[[1]]), big.mark=","), sep = "\t"),
+             paste("Average length:", format(ceiling(result[[2]]), big.mark=","), sep = "\t"),
+             paste("Shortest sequence length:", format(ceiling(result[[3]]), big.mark=","), sep = "\t"),
+             paste("Longest sequence length:", format(ceiling(result[[4]]), big.mark=","), sep = "\t"),
+             paste("N50:", format(ceiling(result[[5]]), big.mark=","), sep = "\t"),
+             paste("Mean GC content:", format(ceiling(result[[6]]), big.mark=","), sep = "\t"),
+             paste("Number of Ns:", format(ceiling(result[[7]]), big.mark=","), sep = "\t")), 
            fileConn)
 close(fileConn)
 
